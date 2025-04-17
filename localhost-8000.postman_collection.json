@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "f5cf933a-0c28-4c10-a11d-0f3590efa60b",
+		"name": "localhost:8000",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2067788",
+		"_collection_link": "https://platform-2417.postman.co/workspace/crud~3f6c6466-6847-446c-ba0f-c3525d923187/collection/2067788-f5cf933a-0c28-4c10-a11d-0f3590efa60b?action=share&source=collection_link&creator=2067788"
+	},
+	"item": [
+		{
+			"name": "top10netfees",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/top10netfees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"top10netfees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/claim/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"service date\": \"2025-04-17T11:30:00\",\n  \"Submitted Procedure\": \"D1110\",\n  \"quadrant\": \"UR\",\n  \"plan/Group #\": \"GRP-1000\",\n  \"subscriber #\": \"3730189502\",\n  \"provider Npi\": 1234567890,\n  \"provider Fees\": 120.50,\n  \"allowed Fees\": 8.00,\n  \"member CoInsurance\": 20.00,\n  \"member Copay\": 10.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/claim/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"claim",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "claim add capitalization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"service date\": \"2025-04-17T11:30:00\",\n  \"Submitted Procedure\": \"D1110\",\n  \"quadrant\": \"UR\",\n  \"plan/Group #\": \"GRP-1000\",\n  \"subscriber #\": \"3730189502\",\n  \"provider Npi\": 1234567890,\n  \"provider Fees\": 120.50,\n  \"allowed Fees\": 8.00,\n  \"member CoInsurance\": 20.00,\n  \"member Copay\": 10.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/claim/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"claim",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
