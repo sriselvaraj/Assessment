@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional
 
 class ClaimBase(BaseModel):
-    serviceDate: Optional[datetime] = Field(None, alias="service date")
+    serviceDate: Optional[datetime] = Field(alias="service date")
     submittedprocedure: str  = Field(alias="submitted procedure")
     quadrant: Optional[str] = None # All fields except *”quadrant”* are required
     plangroup: Optional[str] = Field(alias="plan/group #")
