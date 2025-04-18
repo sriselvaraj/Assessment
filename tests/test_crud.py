@@ -52,6 +52,57 @@ def test_create_item():
     assert res.status_code == 200
     assert res.json()["subscriber #"] == "3730189502"
 
+def test_create_claim():
+    input_json = {
+      "service date": "2025-04-17T11:30:00",
+      "Submitted Procedure": "D1110",
+      "quadrant": "UR",
+      "plan/Group #": "GRP-1000",
+      "subscriber #": "3730189502",
+      "provider Npi": 1234567890,
+      "provider Fees": 120.50,
+      "allowed Fees": 8.00,
+      "member CoInsurance": 20.00,
+      "member Copay": 10.00
+    }
+    print(input_json)
+    res = client.post("/claim/add", json=input_json)
+    assert res.status_code == 200
+    expected_value = input_json["provider Fees"] + input_json["member CoInsurance"] + input_json["member Copay"] - input_json["allowed Fees"]
+    decimal_fees = Decimal(str(expected_value))
+    assert Decimal(res.json()["netfee"]) == decimal_fees.quantize(Decimal('0.00'), rounding=ROUND_DOWN)
+
+
+def test_create_item_unique_id():
+    input_json = {
+      "service date": "2025-04-17T11:30:00",
+      "Submitted Procedure": "D1110",
+      "quadrant": "UR",
+      "plan/Group #": "GRP-1000",
+      "subscriber #": "3730189502",
+      "provider Npi": 1234567890,
+      "provider Fees": 120.50,
+      "allowed Fees": 8.00,
+      "member CoInsurance": 20.00,
+      "member Copay": 10.00
+    }
+    print(input_json)
+    res = client.post("/claim/add", json=input_json)
+    assert res.status_code == 200
+    assert res.json()["id"] == 1
+    res = client.post("/claim/add", json=input_json)
+    assert res.status_code == 200
+    assert res.json()["id"] == 2
+    res = client.post("/claim/add", json=input_json)
+    assert res.status_code == 200
+    assert res.json()["id"] == 3
+    res = client.post("/claim/add", json=input_json)
+    assert res.status_code == 200
+    assert res.json()["id"] == 4
+    res = client.post("/claim/add", json=input_json)
+    assert res.status_code == 200
+    assert res.json()["id"] == 5
+
 def test_create_claim_capitalized():
     input_json = {
       "SERVICE DATE": "2025-04-17T11:30:00",
